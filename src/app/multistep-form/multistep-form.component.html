@@ -1,0 +1,5 @@
+<nav>
+    <a *ngFor="let step of steps" [routerLink]="step.path">{{ step.name }}</a>
+</nav>
+
+<router-outlet></router-outlet>

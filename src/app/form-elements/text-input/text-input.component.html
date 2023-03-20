@@ -1,0 +1,7 @@
+<div>
+    <label *ngIf="label">{{ label }}</label>
+
+    <span *ngIf="error">{{ error }} </span>
+</div>
+
+<input [value]="inputValue" (input)="onInput($event)" (focus)="onTouched(true)" (blur)="onTouched(false)">

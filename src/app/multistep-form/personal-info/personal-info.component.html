@@ -1,0 +1,13 @@
+<app-header headline="Personal Info"
+    description="Please provide your name, email address, and phone number."></app-header>
+
+
+<form [formGroup]="form">
+    <app-text-input formControlName="name" label="Name" [error]="getError('name')"></app-text-input>
+    <app-text-input formControlName="email" label="Email Address" [error]="getError('email')"></app-text-input>
+    <app-text-input formControlName="phoneNumber" label="Phone Number"
+        [error]="getError('phoneNumber')"></app-text-input>
+</form>
+
+
+<app-step-controls [nextButton]="nextButtonConfig"></app-step-controls>

@@ -1,0 +1,9 @@
+<div>
+    <button *ngIf="previousButton" (click)="previousButton.action()" [disabled]="previousButton.disabled ?? false">
+        {{ previousButton.label }}
+    </button>
+
+    <button *ngIf="nextButton" (click)="nextButton.action()" [disabled]="nextButton.disabled ?? false">
+        {{ nextButton.label }}
+    </button>
+</div>
