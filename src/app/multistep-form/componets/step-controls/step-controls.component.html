@@ -1,0 +1,23 @@
+<div class="controls-container">
+  <button
+    class="secondary"
+    *ngIf="previousButton; else emptyDiv"
+    (click)="previousButton.action()"
+    [disabled]="previousButton.disabled ?? false"
+  >
+    {{ previousButton.label }}
+  </button>
+
+  <ng-template #emptyDiv>
+    <div></div>
+  </ng-template>
+
+  <button
+    class="primary"
+    *ngIf="nextButton"
+    (click)="nextButton.action()"
+    [disabled]="nextButton.disabled ?? false"
+  >
+    {{ nextButton.label }}
+  </button>
+</div>

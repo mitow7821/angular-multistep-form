@@ -4,4 +4,9 @@ interface StepControlConfig {
   disabled?: boolean;
 }
 
-export type { StepControlConfig };
+interface Step {
+  path: string;
+  name: string;
+}
+
+export type { StepControlConfig, Step };

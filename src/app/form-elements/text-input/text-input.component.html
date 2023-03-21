@@ -1,7 +1,15 @@
-<div>
+<div class="text-input">
+  <div class="text-input__heading">
     <label *ngIf="label">{{ label }}</label>
 
-    <span *ngIf="error">{{ error }} </span>
-</div>
+    <strong *ngIf="error">{{ error }} </strong>
+  </div>
 
-<input [value]="inputValue" (input)="onInput($event)" (focus)="onTouched(true)" (blur)="onTouched(false)">
+  <input
+    [value]="inputValue"
+    [ngClass]="{ error }"
+    (input)="onInput($event)"
+    (focus)="onTouched(true)"
+    (blur)="onBlur()"
+  />
+</div>

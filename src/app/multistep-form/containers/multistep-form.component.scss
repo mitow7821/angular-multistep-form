@@ -1,0 +1,35 @@
+.background-wrapper {
+    background-color: hsl(217, 100%, 97%);
+    height: 100%;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.multistep-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background: #fff;
+    width: 1000px;
+    height: 600px;
+    border-radius: 1rem;
+
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+        padding: 2.5em 1.5rem 0;
+        border-radius: 1rem;
+        gap: 1.75rem;
+        background-image: url('../../../assets/images/bg-sidebar-desktop.svg');
+        background-size: cover;
+        background-position: bottom;
+
+    }
+
+    &__content {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,16 @@
+<div class="background-wrapper">
+  <div class="multistep-form">
+    <nav class="multistep-form__nav">
+      <app-nav-link
+        *ngFor="let step of steps; let i = index"
+        [step]="step"
+        [ordinalNumber]="i + 1"
+      >
+      </app-nav-link>
+    </nav>
+
+    <div class="multistep-form__content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

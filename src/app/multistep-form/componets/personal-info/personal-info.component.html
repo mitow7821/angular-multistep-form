@@ -1,0 +1,28 @@
+<div class="form-container">
+  <app-header
+    headline="Personal Info"
+    description="Please provide your name, email address, and phone number."
+  ></app-header>
+
+  <form [formGroup]="form">
+    <app-text-input
+      formControlName="name"
+      label="Name"
+      [control]="form.get('name')"
+    ></app-text-input>
+
+    <app-text-input
+      formControlName="email"
+      label="Email Address"
+      [control]="form.get('email')"
+    ></app-text-input>
+
+    <app-text-input
+      formControlName="phoneNumber"
+      label="Phone Number"
+      [control]="form.get('phoneNumber')"
+    ></app-text-input>
+  </form>
+
+  <app-step-controls [nextButton]="nextButtonConfig"></app-step-controls>
+</div>

@@ -1,5 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  NG_VALUE_ACCESSOR,
+  ControlValueAccessor,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-text-input',
@@ -15,7 +21,10 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class TextInputComponent implements ControlValueAccessor {
   @Input() label?: string;
-  @Input() error?: string;
+  @Input() control?: AbstractControl<any, any> | null;
+  @Output() firstBlurEvent = new EventEmitter();
+
+  $afterFirstBlur = new BehaviorSubject(false);
 
   inputValue = '';
 
@@ -23,6 +32,15 @@ export class TextInputComponent implements ControlValueAccessor {
     this.inputValue = (event.target as HTMLInputElement).value;
 
     this.onChange(this.inputValue);
+  }
+
+  onBlur() {
+    if (this.$afterFirstBlur.value === false) {
+      this.firstBlurEvent.emit();
+      this.$afterFirstBlur.next(true);
+    }
+
+    this.onTouched(false);
   }
 
   onChange(value: string) {}
@@ -39,5 +57,26 @@ export class TextInputComponent implements ControlValueAccessor {
 
   registerOnTouched(onTouched: any) {
     this.onTouched = onTouched;
+  }
+
+  get error() {
+    const isDirty = this.control?.dirty;
+    const isAfterFirstBlur = this.$afterFirstBlur.value;
+
+    return isDirty || isAfterFirstBlur
+      ? this.getErrorMessage(this.control?.errors)
+      : undefined;
+  }
+
+  private getErrorMessage(errors: ValidationErrors | null | undefined) {
+    if (errors?.['required']) {
+      return 'This field is required';
+    }
+
+    if (errors?.['email']) {
+      return 'Invalid email address';
+    }
+
+    return;
   }
 }
