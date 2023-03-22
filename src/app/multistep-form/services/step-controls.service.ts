@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { BehaviorSubject, filter, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  elementAt,
+  filter,
+  findIndex,
+  from,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { Step } from '../types/steps';
 
 @Injectable()
@@ -24,17 +32,15 @@ export class StepControlsService {
     this.stepFromSession ?? this.steps[0]
   );
 
-  public nextButtonDefaultConfig = {
-    label: 'Next Step',
-    action: () => {
-      this.nextStep();
+  public defaultButtonConfigs = {
+    next: {
+      label: 'Next Step',
+      action: this.nextStep.bind(this),
     },
-  };
 
-  public previousButtonDefaultConfig = {
-    label: 'Go Back',
-    action: () => {
-      this.previousStep();
+    previous: {
+      label: 'Go Back',
+      action: this.previousStep.bind(this),
     },
   };
 
@@ -50,17 +56,18 @@ export class StepControlsService {
     this.changeCurrentStep(-1);
   }
 
-  private changeCurrentStep(valueAddedToIndex: number) {
-    const currentStepIndex = this.steps.findIndex(
-      ({ path }) => path === this.$currentStep.value.path
-    );
+  private changeCurrentStep(indexOffset: number) {
+    const $steps = from(this.steps);
 
-    const newStep = this.steps[currentStepIndex + valueAddedToIndex];
-
-    if (newStep) {
-      this.$currentStep.next(newStep);
-      this.router.navigate([newStep.path]);
-    }
+    $steps
+      .pipe(
+        findIndex((step) => step.path === this.$currentStep.value.path),
+        switchMap((index) => $steps.pipe(elementAt(index + indexOffset)))
+      )
+      .subscribe((nextStep) => {
+        this.$currentStep.next(nextStep);
+        this.router.navigate([nextStep.path]);
+      });
   }
 
   private getStepFromSession(): Step | null {

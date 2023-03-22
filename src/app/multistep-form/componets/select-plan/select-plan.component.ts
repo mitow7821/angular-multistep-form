@@ -10,14 +10,10 @@ export class SelectPlanComponent {
   constructor(private stepControlService: StepControlsService) {}
 
   get nextButtonConfig() {
-    return {
-      ...this.stepControlService.nextButtonDefaultConfig,
-    };
+    return this.stepControlService.defaultButtonConfigs.next;
   }
 
   get previousButtonConfig() {
-    return {
-      ...this.stepControlService.previousButtonDefaultConfig,
-    };
+    return this.stepControlService.defaultButtonConfigs.previous;
   }
 }

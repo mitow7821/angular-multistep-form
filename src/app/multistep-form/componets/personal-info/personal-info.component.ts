@@ -15,7 +15,7 @@ export class PersonalInfoComponent {
 
   get nextButtonConfig() {
     return {
-      ...this.stepControlService.nextButtonDefaultConfig,
+      ...this.stepControlService.defaultButtonConfigs.next,
       disabled: this.form.valid === false,
     };
   }

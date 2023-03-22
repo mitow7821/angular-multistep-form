@@ -13,6 +13,6 @@
     <strong *ngIf="error">{{ error }} </strong>
   </div>
 
-  <input [value]="inputValue" [ngClass]="{ error }" (input)="onInput($event)" (focus)="onTouched(true)"
+  <input [value]="inputValue" [ngClass]="{ error }" (input)="onInput($event)" (focus)="onTouched()"
     (blur)="onBlur()" />
 </div>

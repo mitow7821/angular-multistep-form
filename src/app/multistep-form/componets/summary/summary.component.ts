@@ -23,8 +23,6 @@ export class SummaryComponent {
   }
 
   get previousButtonConfig() {
-    return {
-      ...this.stepControlService.previousButtonDefaultConfig,
-    };
+    return this.stepControlService.defaultButtonConfigs.previous;
   }
 }

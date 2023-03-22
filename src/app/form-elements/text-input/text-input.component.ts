@@ -43,13 +43,11 @@ export class TextInputComponent implements ControlValueAccessor {
       this.firstBlurEvent.emit();
       this.$afterFirstBlur.next(true);
     }
-
-    this.onTouched(false);
   }
 
   onChange(value: string) {}
 
-  onTouched(value: boolean) {}
+  onTouched() {}
 
   writeValue(value: string) {
     this.inputValue = value;
