@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StepControlsService } from '../step-controls/step-controls.service';
+import { StepControlsService } from '../services/step-controls.service';
 import { Step } from '../types/steps';
 
 @Component({

@@ -12,7 +12,17 @@ export class StepControlsService {
   }
 
   private readonly CURRENT_STEP_SESSION_KEY = 'current_step';
-  private $currentStep = new BehaviorSubject<Step>(this.getCurrentStep());
+  public steps: Step[] = [
+    { path: '/form/personal-info', name: 'YOUR INFO' },
+    { path: '/form/select-plan', name: 'SELECT PLAN' },
+    { path: '/form/add-ons', name: 'ADD-ONS' },
+    { path: '/form/summary', name: 'SUMMARY' },
+  ];
+
+  private stepFromSession = this.getStepFromSession();
+  private $currentStep = new BehaviorSubject<Step>(
+    this.stepFromSession ?? this.steps[0]
+  );
 
   public nextButtonDefaultConfig = {
     label: 'Next Step',
@@ -27,13 +37,6 @@ export class StepControlsService {
       this.previousStep();
     },
   };
-
-  public steps: Step[] = [
-    { path: '/form/personal-info', name: 'YOUR INFO' },
-    { path: '/form/select-plan', name: 'SELECT PLAN' },
-    { path: '/form/add-ons', name: 'ADD-ONS' },
-    { path: '/form/summary', name: 'SUMMARY' },
-  ];
 
   public isCurrentStep(step: Step) {
     return this.$currentStep.value.path === step.path;
@@ -60,10 +63,10 @@ export class StepControlsService {
     }
   }
 
-  private getCurrentStep() {
+  private getStepFromSession(): Step | null {
     const storageValue = sessionStorage.getItem(this.CURRENT_STEP_SESSION_KEY);
 
-    return storageValue ? JSON.parse(storageValue) : this.steps.at(0);
+    return storageValue ? JSON.parse(storageValue) : null;
   }
 
   private onRouteChange() {

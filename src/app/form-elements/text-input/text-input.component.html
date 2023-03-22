@@ -2,14 +2,17 @@
   <div class="text-input__heading">
     <label *ngIf="label">{{ label }}</label>
 
+    <div *ngIf="control?.dirty && isValidationPending" class="loader"></div>
+
+    <div *ngIf="control?.valid && !error" class="checkmark">
+      <span class="material-icons-outlined">
+        done
+      </span>
+    </div>
+
     <strong *ngIf="error">{{ error }} </strong>
   </div>
 
-  <input
-    [value]="inputValue"
-    [ngClass]="{ error }"
-    (input)="onInput($event)"
-    (focus)="onTouched(true)"
-    (blur)="onBlur()"
-  />
+  <input [value]="inputValue" [ngClass]="{ error }" (input)="onInput($event)" (focus)="onTouched(true)"
+    (blur)="onBlur()" />
 </div>

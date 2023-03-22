@@ -24,6 +24,10 @@ export class TextInputComponent implements ControlValueAccessor {
   @Input() control?: AbstractControl<any, any> | null;
   @Output() firstBlurEvent = new EventEmitter();
 
+  get isValidationPending() {
+    return this.control?.status === 'PENDING';
+  }
+
   $afterFirstBlur = new BehaviorSubject(false);
 
   inputValue = '';
