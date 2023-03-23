@@ -1,0 +1,7 @@
+<div class="card-select">
+  <app-card-select-option
+    *ngFor="let plan of paymentPlans"
+    [paymentPlan]="plan"
+    [subscriptionType]="subscriptionType"
+  ></app-card-select-option>
+</div>

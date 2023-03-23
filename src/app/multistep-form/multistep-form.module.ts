@@ -12,11 +12,17 @@ import { ThankYouComponent } from './componets/thank-you/thank-you.component';
 import { HeaderComponent } from './componets/header/header.component';
 import { NavLinkComponent } from './componets/nav-link/nav-link.component';
 import { StepControlsService } from './services/step-controls.service';
-import { FormDataService } from './services/form-data.service';
+import { PersonalInfoFormService } from './services/personal-info-form.service';
 import { StepControlsComponent } from './componets/step-controls/step-controls.component';
+import { CardSelectComponent } from './componets/select-plan/card-select/card-select.component';
+import { CardSelectOptionComponent } from './componets/select-plan/card-select-option/card-select-option.component';
+import { ToggleSwitchModule } from '../form-elements/toggle-switch/toggle-switch.module';
+import { SelectPlanFormService } from './services/select-plan-form.service';
 
 @NgModule({
   declarations: [
+    CardSelectComponent,
+    CardSelectOptionComponent,
     MultistepFormComponent,
     PersonalInfoComponent,
     SelectPlanComponent,
@@ -26,13 +32,19 @@ import { StepControlsComponent } from './componets/step-controls/step-controls.c
     ThankYouComponent,
     HeaderComponent,
     NavLinkComponent,
+    CardSelectOptionComponent,
   ],
   imports: [
     CommonModule,
     MultistepFormRoutingModule,
     ReactiveFormsModule,
     TextInputModule,
-  ], 
-  providers: [StepControlsService, FormDataService],
+    ToggleSwitchModule,
+  ],
+  providers: [
+    StepControlsService,
+    PersonalInfoFormService,
+    SelectPlanFormService,
+  ],
 })
 export class MultistepFormModule {}

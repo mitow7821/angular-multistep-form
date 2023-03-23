@@ -28,9 +28,9 @@ export class TextInputComponent implements ControlValueAccessor {
     return this.control?.status === 'PENDING';
   }
 
-  $afterFirstBlur = new BehaviorSubject(false);
-
   inputValue = '';
+
+  $afterFirstBlur = new BehaviorSubject(false);
 
   onInput(event: Event) {
     this.inputValue = (event.target as HTMLInputElement).value;
@@ -51,6 +51,10 @@ export class TextInputComponent implements ControlValueAccessor {
 
   writeValue(value: string) {
     this.inputValue = value;
+
+    if (value) {
+      this.$afterFirstBlur.next(true);
+    }
   }
 
   registerOnChange(onChange: any) {

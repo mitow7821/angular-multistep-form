@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormDataService } from '../../services/form-data.service';
+import { PersonalInfoFormService } from '../../services/personal-info-form.service';
 import { StepControlsService } from '../../services/step-controls.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { StepControlsService } from '../../services/step-controls.service';
 export class PersonalInfoComponent {
   constructor(
     private stepControlService: StepControlsService,
-    private formDataService: FormDataService
+    private personalInfoFormService: PersonalInfoFormService
   ) {}
 
   get nextButtonConfig() {
@@ -21,6 +21,6 @@ export class PersonalInfoComponent {
   }
 
   get form() {
-    return this.formDataService.personalInfoForm;
+    return this.personalInfoFormService.form;
   }
 }

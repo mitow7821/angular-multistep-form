@@ -1,4 +1,20 @@
-<label class="switch">
-  <input type="checkbox" />
-  <span class="slider"></span>
-</label>
+<div class="toggle-switch">
+  <span
+    (click)="onToggle(false)"
+    class="label"
+    [ngClass]="{ active: value === false }"
+    >{{ leftValue.label }}</span
+  >
+
+  <label class="switch">
+    <input type="checkbox" [checked]="value" (change)="onToggleClick($event)" />
+    <span class="slider round"></span>
+  </label>
+
+  <span
+    (click)="onToggle(true)"
+    class="label"
+    [ngClass]="{ active: value === true }"
+    >{{ rightValue.label }}</span
+  >
+</div>

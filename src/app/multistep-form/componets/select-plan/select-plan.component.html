@@ -1,3 +1,27 @@
-<app-header headline="Select your plan" description="You have the option of monthly or yearly billing."></app-header>
+<div class="form-container">
+  <app-header
+    headline="Select your plan"
+    description="You have the option of monthly or yearly billing."
+  ></app-header>
 
-<app-step-controls [nextButton]="nextButtonConfig" [previousButton]="previousButtonConfig"></app-step-controls>
+  <form [formGroup]="form">
+    <app-card-select
+      [paymentPlans]="paymentPlans"
+      [subscriptionType]="form.get('subscriptionType')?.value ?? 'monthly'"
+      formControlName="paymentPlan"
+    ></app-card-select>
+
+    <div class="toggle-container">
+      <app-toggle-switch
+        formControlName="subscriptionType"
+        [leftValue]="{ label: 'Monthly', value: 'monthly' }"
+        [rightValue]="{ label: 'Yearly', value: 'yearly' }"
+      ></app-toggle-switch>
+    </div>
+  </form>
+
+  <app-step-controls
+    [nextButton]="nextButtonConfig"
+    [previousButton]="previousButtonConfig"
+  ></app-step-controls>
+</div>

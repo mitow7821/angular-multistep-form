@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SelectPlanFormService } from '../../services/select-plan-form.service';
 import { StepControlsService } from '../../services/step-controls.service';
 
 @Component({
@@ -7,31 +8,18 @@ import { StepControlsService } from '../../services/step-controls.service';
   styleUrls: ['./select-plan.component.scss'],
 })
 export class SelectPlanComponent {
-  constructor(private stepControlService: StepControlsService) {}
+  constructor(
+    private stepControlService: StepControlsService,
+    private selectPlanFormService: SelectPlanFormService
+  ) {}
 
-  paymentPlans = [
-    {
-      name: 'Arcade',
-      priceMonthly: '$9/mo',
-      priceYearly: '$90/yr',
-      yearlyDiscount: '2 months free',
-      iconName: 'icon-arcade',
-    },
-    {
-      name: 'Advanced',
-      priceMonthly: '$12/mo',
-      priceYearly: '$120/yr',
-      yearlyDiscount: '2 months free',
-      iconName: 'icon-advanced',
-    },
-    {
-      name: 'Pro',
-      priceMonthly: '$15/mo',
-      priceYearly: '$150/yr',
-      yearlyDiscount: '2 months free',
-      iconName: 'icon-pro',
-    },
-  ];
+  get form() {
+    return this.selectPlanFormService.form;
+  }
+
+  get paymentPlans() {
+    return this.selectPlanFormService.paymentPlans;
+  }
 
   get nextButtonConfig() {
     return this.stepControlService.defaultButtonConfigs.next;

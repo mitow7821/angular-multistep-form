@@ -5,14 +5,17 @@
     <div *ngIf="control?.dirty && isValidationPending" class="loader"></div>
 
     <div *ngIf="control?.valid && !error" class="checkmark">
-      <span class="material-icons-outlined">
-        done
-      </span>
+      <span class="material-icons-outlined"> done </span>
     </div>
 
     <strong *ngIf="error">{{ error }} </strong>
   </div>
 
-  <input [value]="inputValue" [ngClass]="{ error }" (input)="onInput($event)" (focus)="onTouched()"
-    (blur)="onBlur()" />
+  <input
+    [value]="inputValue"
+    [ngClass]="{ error }"
+    (input)="onInput($event)"
+    (focus)="onTouched()"
+    (blur)="onBlur()"
+  />
 </div>

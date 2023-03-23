@@ -1,0 +1,24 @@
+<div
+  class="card-select-option"
+  tabindex="0"
+  (click)="cardSelectComponent.selectPlan(paymentPlan)"
+  [ngClass]="{
+    selected: paymentPlan.name === cardSelectComponent.selectedPlan?.name
+  }"
+>
+  <img src="assets/images/{{ paymentPlan.iconName }}.svg" alt="" />
+
+  <h3>{{ paymentPlan.name }}</h3>
+
+  <span class="price"
+    >{{
+      subscriptionType === "monthly"
+        ? paymentPlan.priceMonthly
+        : paymentPlan.priceYearly
+    }}
+  </span>
+
+  <p>
+    {{ subscriptionType === "yearly" ? paymentPlan.yearlyDiscount : "" }}
+  </p>
+</div>
