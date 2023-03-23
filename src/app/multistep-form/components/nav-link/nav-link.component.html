@@ -1,4 +1,7 @@
-<a [routerLink]="step.path" [ngClass]="{ current: isSelected }">
+<a
+  [routerLink]="canActivate ? step.path : null"
+  [ngClass]="{ current: isSelected }"
+>
   <div class="step-circle">{{ ordinalNumber }}</div>
 
   <div class="content">
