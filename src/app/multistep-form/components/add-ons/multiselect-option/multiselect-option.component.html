@@ -1,0 +1,17 @@
+<div
+  class="multiselect-option"
+  tabindex="0"
+  (click)="multiselectComponent.toggleAddOn(addOn)"
+  [ngClass]="{
+    selected: multiselectComponent.isSelected(addOn)
+  }"
+>
+  <input type="checkbox" [checked]="multiselectComponent.isSelected(addOn)" />
+  <h3>{{ addOn.name }}</h3>
+
+  <span class="price"
+    >{{
+      subscriptionType === "monthly" ? addOn.priceMonthly : addOn.priceYearly
+    }}
+  </span>
+</div>

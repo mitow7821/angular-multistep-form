@@ -1,24 +1,30 @@
 import { Component } from '@angular/core';
+import { AddOnsFormService } from '../../services/add-ons-form.service';
 import { SelectPlanFormService } from '../../services/select-plan-form.service';
 import { StepControlsService } from '../../services/step-controls.service';
 
 @Component({
-  selector: 'app-select-plan',
-  templateUrl: './select-plan.component.html',
-  styleUrls: ['./select-plan.component.scss'],
+  selector: 'app-add-ons',
+  templateUrl: './add-ons.component.html',
+  styleUrls: ['./add-ons.component.scss'],
 })
-export class SelectPlanComponent {
+export class AddOnsComponent {
   constructor(
     private stepControlService: StepControlsService,
+    private addOnsFormService: AddOnsFormService,
     private selectPlanFormService: SelectPlanFormService
   ) {}
 
-  get form() {
-    return this.selectPlanFormService.form;
+  get subscriptionType() {
+    return this.selectPlanFormService.form.value.subscriptionType ?? 'monthly';
   }
 
-  get paymentPlans() {
-    return this.selectPlanFormService.paymentPlans;
+  get form() {
+    return this.addOnsFormService.form;
+  }
+
+  get addOns() {
+    return this.addOnsFormService.addOns;
   }
 
   get nextButtonConfig() {

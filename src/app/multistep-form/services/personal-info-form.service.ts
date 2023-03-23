@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { debounceTime, of, switchMap, take, timer } from 'rxjs';
+import { debounceTime, delayWhen, of, switchMap, timer } from 'rxjs';
 
 @Injectable()
 export class PersonalInfoFormService {
   constructor(private fb: FormBuilder) {
-    this.setFormValuesFromSession();
-
     this.form.valueChanges.pipe(debounceTime(300)).subscribe(() => {
       this.saveFormInSession();
     });
@@ -17,15 +15,7 @@ export class PersonalInfoFormService {
   public form = this.fb.group(
     {
       name: ['', { asyncValidators: [this.delayedRequiredValidator] }],
-      email: [
-        '',
-        {
-          asyncValidators: [
-            this.delayedRequiredValidator,
-            this.delayedEmailValidator,
-          ],
-        },
-      ],
+      email: ['', { asyncValidators: [this.delayedRequiredValidator] }],
       phoneNumber: ['', { asyncValidators: [this.delayedRequiredValidator] }],
     },
     { updateOn: 'change' }
@@ -43,11 +33,10 @@ export class PersonalInfoFormService {
     }
   }
 
-  private delayedEmailValidator(control: AbstractControl) {
-    return timer(500).pipe(switchMap(() => of(Validators.email(control))));
-  }
-
   private delayedRequiredValidator(control: AbstractControl) {
-    return timer(500).pipe(switchMap(() => of(Validators.required(control))));
+    return of(control.touched).pipe(
+      delayWhen((isTouched) => (isTouched ? timer(500) : of(undefined))),
+      switchMap(() => of(Validators.required(control)))
+    );
   }
 }
