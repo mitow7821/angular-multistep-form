@@ -14,17 +14,39 @@
     font-weight: 600;
 }
 
-.primary {
+.button {
     font-size: 1rem;
     padding: 0.75rem 1.25rem;
     color: #fff;
-    background-color: hsl(213, 96%, 18%);
     border: 0;
     border-radius: 0.5rem;
     cursor: pointer;
 
     &:disabled {
-        background: hsla(213, 96%, 18%, 70%);
         cursor: not-allowed;
+    }
+}
+
+.primary {
+    background-color: hsl(213, 96%, 18%);
+
+    &:hover {
+        background-color: hsla(213, 96%, 18%, 0.85);
+    }
+
+    &:disabled {
+        background: hsla(213, 96%, 18%, 0.7);
+    }
+}
+
+.submit {
+    background-color: hsl(243, 100%, 62%);
+
+    &:hover {
+        background-color: hsl(243, 100%, 62%, 0.85)
+    }
+
+    &:disabled {
+        background-color: hsl(243, 100%, 62%, 0.7);
     }
 }

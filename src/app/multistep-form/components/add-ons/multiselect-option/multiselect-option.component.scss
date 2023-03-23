@@ -1,18 +1,35 @@
 .multiselect-option {
     border: 1px solid hsl(229, 24%, 87%);
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 1.25rem;
     padding-right: 2rem;
     cursor: pointer;
     transition: .2s;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 
-    h3 {
-        color: hsl(213, 96%, 18%);
-        margin: 0
+    .middle-part {
+        display: grid;
+        align-items: center;
+        gap: .25rem;
+        flex-grow: 1;
+
+        h4 {
+            color: hsl(213, 96%, 18%);
+            margin: 0
+        }
+
+        p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: hsl(231, 11%, 63%);
+        }
     }
 
     .price {
-        color: hsl(231, 11%, 63%);
+        margin-left: auto;
+        color: hsla(243, 100%, 62%, 0.8);
         font-weight: 600;
     }
 
@@ -21,9 +38,56 @@
         border-color: hsl(243, 100%, 62%);
     }
 
-    p {
-        font-size: 0.9rem;
-        height: 0.75rem;
-        color: hsl(213, 96%, 18%);
+
+}
+
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    height: 1.25rem;
+    width: 1.25rem;
+    user-select: none;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked~.checkmark {
+            background-color: hsl(243, 100%, 62%);
+
+            &:after {
+                display: block;
+            }
+        }
+    }
+
+    .checkmark {
+        border-radius: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1.25rem;
+        width: 1.25rem;
+        background-color: #eee;
+
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+    }
+
+    .checkmark:after {
+        left: 8px;
+        top: 4px;
+        width: 3px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        rotate: 45deg;
     }
 }

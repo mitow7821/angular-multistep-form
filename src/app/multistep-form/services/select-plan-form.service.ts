@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { PaymentPlan } from '../types/select-plan';
 
 @Injectable()
 export class SelectPlanFormService {
@@ -35,7 +36,7 @@ export class SelectPlanFormService {
   ];
 
   public form = this.fb.group({
-    paymentPlan: [null, Validators.required],
+    paymentPlan: [null as PaymentPlan | null, Validators.required],
     subscriptionType: ['monthly'],
   });
 

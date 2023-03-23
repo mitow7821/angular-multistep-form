@@ -13,7 +13,8 @@
   </ng-template>
 
   <button
-    class="primary"
+    class="button"
+    [ngClass]="nextButton.isSubmit ? 'submit' : 'primary'"
     *ngIf="nextButton"
     (click)="nextButton.action()"
     [disabled]="nextButton.disabled ?? false"

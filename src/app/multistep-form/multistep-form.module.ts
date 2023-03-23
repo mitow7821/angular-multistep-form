@@ -21,6 +21,7 @@ import { SelectPlanFormService } from './services/select-plan-form.service';
 import { MultiselectComponent } from './components/add-ons/multiselect/multiselect.component';
 import { AddOnsFormService } from './services/add-ons-form.service';
 import { MultiselectOptionComponent } from './components/add-ons/multiselect-option/multiselect-option.component';
+import { FormsDataService } from './services/forms-data.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MultiselectOptionComponent } from './components/add-ons/multiselect-opt
     PersonalInfoFormService,
     SelectPlanFormService,
     AddOnsFormService,
+    FormsDataService,
   ],
 })
 export class MultistepFormModule {

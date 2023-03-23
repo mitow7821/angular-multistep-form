@@ -6,11 +6,18 @@
     selected: multiselectComponent.isSelected(addOn)
   }"
 >
-  <input type="checkbox" [checked]="multiselectComponent.isSelected(addOn)" />
-  <h3>{{ addOn.name }}</h3>
+  <label class="container">
+    <input type="checkbox" [checked]="multiselectComponent.isSelected(addOn)" />
+    <span class="checkmark"></span>
+  </label>
 
-  <span class="price"
-    >{{
+  <div class="middle-part">
+    <h4>{{ addOn.name }}</h4>
+    <p>{{ addOn.description }}</p>
+  </div>
+
+  <span class="price">
+    {{
       subscriptionType === "monthly" ? addOn.priceMonthly : addOn.priceYearly
     }}
   </span>

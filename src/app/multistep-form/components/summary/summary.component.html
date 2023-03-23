@@ -1,3 +1,62 @@
-<app-header headline="Finishing up" description="Double-check everything looks OK before confirming."></app-header>
+<div class="form-container">
+  <app-header
+    headline="Finishing up"
+    description="Double-check everything looks OK before confirming."
+  ></app-header>
 
-<app-step-controls [nextButton]="nextButtonConfig" [previousButton]="previousButtonConfig"></app-step-controls>
+  <div class="content-wrapper">
+    <div class="summary-box">
+      <div>
+        <span>
+          Arcade ({{
+            formsData.selectPlan.subscriptionType === "monthly"
+              ? "Monthly"
+              : "Yearly"
+          }})
+        </span>
+
+        <span>Change</span>
+
+        <strong>
+          {{
+            formsData.selectPlan.subscriptionType === "monthly"
+              ? formsData.selectPlan.paymentPlan?.priceMonthly
+              : formsData.selectPlan.paymentPlan?.priceYearly
+          }}
+        </strong>
+      </div>
+
+      <div class="line" *ngIf="formsData.addOns.addOns?.length"></div>
+
+      <div *ngFor="let addOn of formsData.addOns.addOns">
+        <span> {{ addOn.name }}</span>
+
+        <strong>
+          {{
+            formsData.selectPlan.subscriptionType === "monthly"
+              ? addOn?.priceMonthly
+              : addOn?.priceYearly
+          }}
+        </strong>
+      </div>
+    </div>
+
+    <div class="total">
+      <span
+        >Total (per
+        {{
+          formsData.selectPlan.subscriptionType === "monthly"
+            ? "month"
+            : "year"
+        }})
+      </span>
+
+      <strong>$12/yr</strong>
+    </div>
+  </div>
+
+  <app-step-controls
+    [nextButton]="nextButtonConfig"
+    [previousButton]="previousButtonConfig"
+  ></app-step-controls>
+</div>

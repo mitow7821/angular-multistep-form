@@ -1,17 +1,19 @@
-<app-header
-  headline="Pick add-ons"
-  description="Add-ons help enhance your gaming experience."
-></app-header>
+<div class="form-container">
+  <app-header
+    headline="Pick add-ons"
+    description="Add-ons help enhance your gaming experience."
+  ></app-header>
 
-<form [formGroup]="form">
-  <app-multiselect
-    [addOns]="addOns"
-    [subscriptionType]="subscriptionType"
-    formControlName="addOns"
-  ></app-multiselect>
-</form>
+  <form [formGroup]="form">
+    <app-multiselect
+      [addOns]="addOns"
+      [subscriptionType]="subscriptionType"
+      formControlName="addOns"
+    ></app-multiselect>
+  </form>
 
-<app-step-controls
-  [nextButton]="nextButtonConfig"
-  [previousButton]="previousButtonConfig"
-></app-step-controls>
+  <app-step-controls
+    [nextButton]="nextButtonConfig"
+    [previousButton]="previousButtonConfig"
+  ></app-step-controls>
+</div>

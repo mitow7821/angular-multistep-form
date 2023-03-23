@@ -2,6 +2,7 @@ interface StepControlConfig {
   label: string;
   action: () => void;
   disabled?: boolean;
+  isSubmit?: boolean;
 }
 
 interface Step {
